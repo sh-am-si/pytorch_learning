@@ -1,5 +1,5 @@
-import torch
 from torch import nn
+
 
 class BlobModel(nn.Module):
     def __init__(self, input_features, output_features, hidden_units=8):
@@ -17,8 +17,10 @@ class BlobModel(nn.Module):
             # nn.ReLU(), # <- does our dataset require non-linear layers? (try uncommenting and see if the results change)
             nn.Linear(in_features=hidden_units, out_features=hidden_units),
             # nn.ReLU(), # <- does our dataset require non-linear layers? (try uncommenting and see if the results change)
-            nn.Linear(in_features=hidden_units, out_features=output_features), # how many classes are there?
+            nn.Linear(
+                in_features=hidden_units, out_features=output_features
+            ),  # how many classes are there?
         )
-    
+
     def forward(self, x):
         return self.linear_layer_stack(x)
